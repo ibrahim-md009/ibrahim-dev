@@ -1,54 +1,55 @@
 import Whatsapp from "../assets/icons/Whatsapp";
-import { Phone, Mail } from "lucide-react";
+import SectionTitle from "../components/SectionTitle";
+import { Mail } from "lucide-react";
 
 const socialLinks = [
   {
     id: 1,
-    title: "Whatsapp",
+    title: "WhatsApp",
+    value: "+20 155 239 2814",
     href: "https://wa.me/201552392814",
     icon: Whatsapp,
+    external: true,
   },
   {
     id: 2,
-    title: "Phone",
-    href: "tel:01552392814",
-    icon: Phone,
-  },
-  {
-    id: 3,
     title: "Email",
-    href: "mailto:ibrahimmdsh2009@gmail.com",
+    value: "ibrahim.shubair.dev@gmail.com",
+    href: "mailto:ibrahim.shubair.dev@gmail.com",
     icon: Mail,
   },
 ];
 
 const Contact = () => {
   return (
-    <div
-      id="contact"
-      className="my-20 flex scroll-mt-10 flex-col items-center px-5"
-    >
-      <h2 className="text-main-text mb-12 text-4xl font-bold md:mb-20 md:text-5xl">
+    <section id="contact" className="mx-auto my-24 max-w-6xl scroll-mt-20 px-4">
+      <SectionTitle subtitle="Pick whichever way suits you best.">
         Contact
-      </h2>
+      </SectionTitle>
 
-      <div className="bg-card-bg/60 border-main-border text-main-text grid w-full max-w-md grid-cols-1 gap-4 rounded-2xl border px-2 py-3 md:max-w-full md:grid-cols-3 md:py-5">
-        {socialLinks.map(({ id, title, href, icon: Icon }) => {
-          return (
-            <a
-              key={id}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:border-main-text bg-accent/70 flex max-w-md flex-1 flex-wrap items-center gap-3 overflow-hidden rounded-2xl border border-transparent px-4 py-2 shadow-lg transition-all duration-300 md:flex-col md:justify-start md:gap-12 md:px-1 md:py-2 md:pb-10"
-            >
-              <Icon className="size-8 shrink-0 md:size-12" />
-              <p className="text-xl font-semibold md:text-3xl">{title}</p>
-            </a>
-          );
-        })}
+      <div className="grid gap-4 md:grid-cols-3 md:gap-6">
+        {socialLinks.map(({ id, title, value, href, icon: Icon, external }) => (
+          <a
+            key={id}
+            href={href}
+            {...(external && { target: "_blank", rel: "noopener noreferrer" })}
+            className="group bg-card-bg/60 border-main-border hover:border-accent/60 hover:shadow-accent/10 flex items-center gap-4 rounded-2xl border p-4 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl md:flex-col md:items-start md:gap-8 md:p-6"
+          >
+            <span className="bg-accent/10 text-accent group-hover:bg-accent group-hover:text-card-bg grid size-14 shrink-0 place-items-center rounded-2xl text-3xl transition-colors duration-300 md:size-16 md:text-4xl">
+              <Icon className="size-7 md:size-9" />
+            </span>
+            <span className="min-w-0">
+              <span className="text-main-text block text-xl font-semibold md:text-2xl">
+                {title}
+              </span>
+              <span className="text-sub-text block text-sm break-all md:text-base">
+                {value}
+              </span>
+            </span>
+          </a>
+        ))}
       </div>
-    </div>
+    </section>
   );
 };
 

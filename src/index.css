@@ -2,48 +2,89 @@
 @import "tailwindcss";
 
 @theme {
-  /*  */
-  --color-main-bg: #09090b;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
 
+  --color-main-bg: #09090b;
   /* zinc-900 */
   --color-card-bg: #18181b;
-
   /* zinc-100 */
   --color-main-text: #f4f4f5;
-
   /* zinc-400 */
   --color-sub-text: #9f9fa9;
-
   /* emerald-400 */
   --color-accent: #00d492;
   /* emerald-500 */
   --color-accent-dark: #00bc7d;
-
   /* zinc-800 */
   --color-main-border: #27272a;
 }
 
 html.light {
   --color-main-bg: #f8fafc;
-
   --color-card-bg: #ffffff;
-
   --color-main-text: #18181b;
-
   --color-sub-text: #71717a;
-
   --color-accent: #059669;
   --color-accent-dark: #047857;
-
   --color-main-border: #e4e4e7;
+}
 
-  --color-main-bg: #f8fafc;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--color-main-bg);
-  font-family: "Plus Jakarta Sans", sans-serif;
+  color: var(--color-main-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
-html {
-  scroll-behavior: smooth;
+
+::selection {
+  background: color-mix(in oklab, var(--color-accent) 35%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 0.75rem;
+}
+
+/* subtle grid behind the hero, fades out toward the bottom */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--color-main-border) 80%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-main-border) 80%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 0%, #000 30%, transparent 80%);
+}
+
+/* the one orchestrated moment: hero entrance, staggered with --i */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 110ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

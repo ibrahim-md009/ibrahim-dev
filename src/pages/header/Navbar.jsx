@@ -1,29 +1,26 @@
+import { navItems, sectionIds } from "../../constants/nav";
+import useActiveSection from "../../hooks/useActiveSection";
+
 const MdNavbar = () => {
-  const links = [
-    {
-      title: "Home",
-      href: "#home",
-    },
-    {
-      title: "Projects",
-      href: "#projects",
-    },
-    {
-      title: "Contact",
-      href: "#contact",
-    },
-  ];
+  const active = useActiveSection(sectionIds);
+
   return (
-    <nav className="hidden md:flex">
-      <ul className="text-main-text flex gap-4 text-xl">
-        {links.map((p, i) => {
+    <nav aria-label="Main navigation" className="hidden md:block">
+      <ul className="flex gap-1 text-lg">
+        {navItems.map(({ id, href, label }) => {
+          const isActive = active === id;
           return (
-            <li key={i}>
+            <li key={id}>
               <a
-                href={p.href}
-                className="hover:text-accent rounded-2xl p-2 duration-300"
+                href={href}
+                aria-current={isActive ? "true" : undefined}
+                className={`block rounded-xl px-4 py-2 font-medium transition-colors duration-300 ${
+                  isActive
+                    ? "text-accent bg-accent/10"
+                    : "text-sub-text hover:text-main-text"
+                }`}
               >
-                {p.title}
+                {label}
               </a>
             </li>
           );

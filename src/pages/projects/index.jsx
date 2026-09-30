@@ -1,68 +1,90 @@
-import falafelProjectImg from "../../assets/Screenshot 2026-07-21 193304.png";
+import falafelProjectImg from "../../assets/falafel.png";
 import jsGamesProjectImg from "../../assets/Screenshot 2026-07-21 190709.png";
+import keoStudioImg from "../../assets/keo-project.png";
+import waterElabaladImg from "../../assets/water-elbalad.png";
+import SectionTitle from "../../components/SectionTitle";
 import ProjectCard from "./Project";
 
 const projects = [
   {
+    src: keoStudioImg,
+    pName: "KEO-Studio",
+    desc: [],
+    collaborators: [
+      { name: "Mahmoud", url: "https://mhmod-hazem-portfolio.vercel.app/" },
+    ],
+    technologies: ["React", "CSS"],
+    gitHub: "https://github.com/ibrahim-md009/KEO-Studio",
+    demo: "https://keo-studio.vercel.app/",
+  },
+  {
+    src: waterElabaladImg,
+    pName: "Water-Elbalad",
+    desc: [],
+    collaborators: [
+      { name: "Mahmoud", url: "https://mhmod-hazem-portfolio.vercel.app/" },
+    ],
+    technologies: ["React", "CSS"],
+    gitHub: "https://github.com/ibrahim-md009/elbalad-water",
+    demo: "https://elbalad-water.vercel.app/",
+  },
+  {
     src: falafelProjectImg,
     pName: "Falafel Store",
     desc: [
-      <>• A responsive, modern e-commerce</>,
+      <>A responsive, modern e-commerce store</>,
       <>
-        • Cart System powered by
+        Cart system powered by
         <span className="text-main-text font-medium"> Context</span> and
         <span className="text-main-text font-medium"> useReducer</span>
       </>,
       <>
-        • <span className="text-main-text font-medium">Axios</span> integration
-        to handle API requests
+        <span className="text-main-text font-medium">Axios</span> integration to
+        handle API requests
       </>,
-      <>• Real-time product search functionality.</>,
-      <>• Persistent user authentication login using localStorage.</>,
+      <>Real-time product search</>,
+      <>Persistent user login using localStorage</>,
     ],
     technologies: ["React", "Tailwind CSS"],
     gitHub: "https://github.com/ibrahim-md009/Falafel",
-    demo: " https://ibrahim-md009.github.io/Falafel/",
+    demo: "https://ibrahim-md009.github.io/Falafel/",
   },
   {
     src: jsGamesProjectImg,
     pName: "JS Games",
     desc: [
       <>
-        • A responsive, modern games hub including games created with
-        <span className="text-accent font-medium"> JavaScript</span>.
+        A responsive, modern games hub built with
+        <span className="text-accent font-medium"> JavaScript</span>
       </>,
       <>
-        • Hangman game featuring{" "}
+        Hangman game featuring{" "}
         <span className="text-main-text font-medium">
-          word-fetching from API{" "}
-        </span>
-        and error handling.
+          word-fetching from an API
+        </span>{" "}
+        and error handling
       </>,
-      <>• Score tracking and multiplayer support.</>,
+      <>Score tracking and multiplayer support</>,
     ],
     technologies: ["HTML", "CSS", "JavaScript"],
     gitHub: "https://github.com/ibrahim-md009/JS-Games",
-    demo: " https://ibrahim-md009.github.io/JS-Games/",
+    demo: "https://ibrahim-md009.github.io/JS-Games/",
   },
 ];
-
 const Projects = () => {
   return (
-    <div
+    <section
       id="projects"
-      className="mx-4 my-20 flex scroll-mt-20 flex-col items-center gap-5"
+      className="mx-auto my-20 max-w-6xl scroll-mt-20 px-4"
     >
-      <p className="text-main-text mb-12 text-4xl font-bold md:mb-20 md:text-5xl">
-        My Projects
-      </p>
+      <SectionTitle>My Projects</SectionTitle>
 
-      <div className="flex flex-col gap-10 md:flex-row md:flex-wrap md:justify-center">
-        {projects.map((p, i) => (
-          <ProjectCard key={i} p={p} />
+      <div className="grid gap-8 md:grid-cols-2">
+        {projects.map((p) => (
+          <ProjectCard key={p.pName} p={p} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
