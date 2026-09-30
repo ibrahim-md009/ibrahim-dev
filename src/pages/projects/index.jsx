@@ -1,5 +1,5 @@
 import falafelProjectImg from "../../assets/falafel.png";
-import jsGamesProjectImg from "../../js-games.png";
+import jsGamesProjectImg from "../../assets/js-games.png";
 import keoStudioImg from "../../assets/keo-project.png";
 import waterElabaladImg from "../../assets/water-elbalad.png";
 import SectionTitle from "../../components/SectionTitle";

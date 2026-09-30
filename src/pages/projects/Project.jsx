@@ -25,7 +25,7 @@ const Project = ({ p }) => {
 
         {p.collaborators?.length > 0 && (
           <p className="text-sub-text text-sm">
-            Built with{" "}
+            Co-developed with{" "}
             {p.collaborators.map((c, i) => (
               <span key={c.name}>
                 <a
